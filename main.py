@@ -1,10 +1,3 @@
-# Afficher le titre du jeu
-# Demander au joueur son pseudo
-# Choix des personnages
-# Lancement de la boucle de jeu
-
-# -------------------
-
 # Affiche le titre du jeu
 # choix_menu()
 
@@ -16,7 +9,7 @@
 #           lancer la méthode lié a l'option:
 #               Pour 1 lancer new_game()
 #               Pour 2 lancer leaderboard()
-#               Pour 3 lancer quit()
+#               Pour 3 ne rien faire, ce qui quitte la boucle
 #       Sinon afficher que l'input est invalide
 
 # new_game():
@@ -37,6 +30,8 @@
 #   parcours la liste:
 #       si le score du joueur est plus grand que le score du joueur dans la liste au point i:
 #           insérer le joueur et son score a sa place dans la collection de la DB
+
+
 
 # créer_equipe():
 #   créer une liste d'équipe vide
