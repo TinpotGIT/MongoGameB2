@@ -6,7 +6,9 @@
 #           lance_fonction(choix)
 
 # afficher_menu():
-#   print le menu complet
+#   affiche 1. Jouer
+#   affiche 2. Classement
+#   affiche 3. Quitter
 
 # si_nombre_valide(choix, min, max):
 #   si choix n'est pas un nombre:
@@ -15,7 +17,7 @@
 #       retourne Vrai
 #   retourne Faux
 
-# lance_fonction(choix):
+# lancer_fonction(choix):
 #   pour choix:
 #       si 1 -> charger_partie()
 #       si 2 -> classement()
@@ -27,16 +29,52 @@
 #   pseudo = demander_pseudo()
 #   ajouter_score(score, pseudo)
 
-# creer_equipe(equipe):
+# creer_equipe(equipe, max):
 #   liste_personnages = recuperer_liste(Personnages)
 #   afficher_personnages(liste_personnages)
-#   Boucle infini:
+#   Boucle tant que len(equipe) != max:
 #       choix = demande un input 
-#       si_personnage_valide(choix, equipe):
-#           ajouter_personnage_equipe(choix, equipe)
+#       si_nombre_valide(choix, 1, len(liste_personnages)):
+#           ajouter liste_personnages[choix] à equipe
 #   retourner equipe
 
 # recuperer_liste(collection):
 #   resultat = liste vide
-#   pour tout les documents dans la collection:
-#       ajouter le document 
+#   pour tout document dans la collection:
+#       ajouter le document à la liste
+#   retourne résultat
+
+# afficher_personnages(liste):
+#   pour tout personnage dans la liste:
+#       afficher_personnage(personnage)
+
+# afficher_personnage(personnage):
+#   affiche le nom du personnage
+#   affiche les points de vie du personnage
+#   affiche la force du personnage
+#   affiche la defense du personnage
+
+# demander_pseudo():
+#   Boucle infini:
+#       pseudo = demander input
+#       si_pseudo_valide(pseudo):
+#           retourne pseudo
+
+# jeu(equipe):
+#   créer variables tours = 1 et score = 0
+#   boucle tant que si_equipe_vivante():
+#       afficher_info_tour(tours, score)
+#       monstre = créer_monstre()
+#       boucle tant que si_monstre_vivant(monstre):
+#           equipe_attaque_monstre()
+#           si_monstre_vivant(monstre):
+#               monstre_attaque_equipe()
+#       score = recompenses_monstre(monstre)
+#   afficher_info_fin(tours, score)
+
+# si_pseudo_valide(pseudo):
+#   si pseudo n'est pas un string vide:
+#       retourne Vrai
+#   sinon:
+#       affiche que l'utilisateur doit écrire un pseudo
+#       retourne Faux
