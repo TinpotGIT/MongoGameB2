@@ -1,4 +1,7 @@
 # main:
+# choix_menu():
+
+# choix_menu():
 #   Boucle infini:
 #       afficher_menu()
 #       choix = demande un input pour le menu
@@ -24,10 +27,10 @@
 #       si 3 -> quitte la boucle
 
 # charger_partie():
+#   pseudo = demander_pseudo()
 #   equipe = creer_equipe()
 #   monstres = recuperer_liste(Monstres)
 #   score = lancer_partie(equipe, monstres)
-#   pseudo = demander_pseudo()
 #   ajouter_score(score, pseudo)
 
 # creer_equipe():
@@ -64,18 +67,16 @@
 #   retourner pseudo
 
 # lancer_partie(equipe, monstres):
-#   créer variables tours = 0 et score = 0
+#   créer variable score = 0
 #   boucle tant que si_equipe_vivante():
-#       score = lancer_tour(equipe, monstres, tours, score)
+#       lancer_vague(equipe, monstres, score)
+#       si_equipe_vivante:
+#           score += 1
+#       afficher_info_vague(score)
 
-# lancer_tour(equipe, monstres, tours, score):
-#   afficher_info_tour(tours, score)
+# lancer_vague(equipe, monstres, score):
 #   monstre = recuperer_monstre(monstres)
 #   lancer_combat(equipe, monstre)
-#   si_equipe_vivante:
-#       score += 1
-#   tours += 1
-#   retourner score
 
 # si_equipe_vivante():
 #   pour tout membre dans équipe:
@@ -83,15 +84,37 @@
 #           retourne Vrai
 #   retourne Faux
 
-# afficher_info_tour(tours, score):
-#   affiche f"Tour numéro : {tours}"
-#   affiche f"Score actuel de : {score}"
+# afficher_info_vague(score):
+#   affiche f"Tour numéro : {score}"
 
 # récuperer_monstre(monstres):
 #   retourner un élement aléatoire dans la liste monstres
 
 # lancer_combat(equipe, monstre):
 #   boucle tant que si_monstre_vivant(monstre) et si_equipe_vivante(equipe):
-#       equipe_attaque_monstre()
+#       equipe_attaque_monstre(equipe, monstre)
 #       si_monstre_vivant(monstre):
-#           monstre_attaque_equipe()
+#           monstre_attaque_equipe(monstre, equipe)
+
+# equipe_attaque_monstre(equipe, monstre):
+#   pour chaque personnage dans equipe:
+#       pv du monstre - (attaque du personnage - defense du monstre)
+
+# monstre_attaque_equipe(monstre, equipe):
+#   personnage_choisi = personnage au hasard dans la liste de l'equipe
+#   pv du personnage_choisi - (attaque du monstre - defense du personnage_choisi)
+#   si pv du personnage choisi <= 0:
+#       retirer personnage choisi de la liste equipe
+
+# classement():
+#   pour chaque user dans Scores:
+#       Afficher "placement -> nom : score \n"
+
+# ajouter_score(score, pseudo):
+#   emplacement = trouver_emplacement_score(score)
+#   inserer_nouveau_score(score, pseudo, emplacement)
+
+# trouver_emplacement_score(score):
+#   de i jusqu'à len(Scores)
+#       si le score du user au i < score:
+#           retourne emplacement
