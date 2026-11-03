@@ -24,23 +24,27 @@
 #       si 3 -> quitte la boucle
 
 # charger_partie():
-#   equipe = creer_equipe([])
-#   score = jeu(equipe)
+#   equipe = creer_equipe()
+#   monstres = recuperer_liste(Monstres)
+#   score = lancer_partie(equipe, monstres)
 #   pseudo = demander_pseudo()
 #   ajouter_score(score, pseudo)
 
-# creer_equipe(equipe, max):
+# creer_equipe():
 #   liste_personnages = recuperer_liste(Personnages)
 #   afficher_personnages(liste_personnages)
+#   equipe = ajouter_personnages(liste_personnages, [], 3)
+#   retourner equipe
+
+# ajouter_personnages(liste_personnages, equipe, max):
 #   Boucle tant que len(equipe) != max:
 #       choix = demande un input 
 #       si_nombre_valide(choix, 1, len(liste_personnages)):
 #           ajouter liste_personnages[choix] à equipe
-#   retourner equipe
 
-# recuperer_liste(collection):
-#   resultat = liste vide
-#   pour tout document dans la collection:
+# recuperer_liste(collection)
+#   resultat = []
+#   pour tout document dans la collection.find():
 #       ajouter le document à la liste
 #   retourne résultat
 
@@ -55,30 +59,39 @@
 #   affiche la defense du personnage
 
 # demander_pseudo():
-#   Boucle infini:
-#       pseudo = demander input
-#       si_pseudo_valide(pseudo):
-#           retourne pseudo
+#   afficher "Ecris ton pseudo : "
+#   pseudo = demander input
+#   retourner pseudo
 
-# jeu(equipe):
-#   créer variables tours = 1 et score = 0
+# lancer_partie(equipe, monstres):
+#   créer variables tours = 0 et score = 0
 #   boucle tant que si_equipe_vivante():
-#       afficher_info_tour(tours, score)
-#       monstre = créer_monstre()
-#       lancer_tour(equipe, monstre)
-#       si_equipe_vivante():
-#           score = recompenses_monstre(monstre)
+#       score = lancer_tour(equipe, monstres, tours, score)
+
+# lancer_tour(equipe, monstres, tours, score):
+#   afficher_info_tour(tours, score)
+#   monstre = recuperer_monstre(monstres)
+#   lancer_combat(equipe, monstre)
+#   si_equipe_vivante:
+#       score += 1
+#   tours += 1
 #   retourner score
 
-# lancer_tour(equipe, monstre):
+# si_equipe_vivante():
+#   pour tout membre dans équipe:
+#       si hp de member > 0:
+#           retourne Vrai
+#   retourne Faux
+
+# afficher_info_tour(tours, score):
+#   affiche f"Tour numéro : {tours}"
+#   affiche f"Score actuel de : {score}"
+
+# récuperer_monstre(monstres):
+#   retourner un élement aléatoire dans la liste monstres
+
+# lancer_combat(equipe, monstre):
 #   boucle tant que si_monstre_vivant(monstre) et si_equipe_vivante(equipe):
 #       equipe_attaque_monstre()
-#           si_monstre_vivant(monstre):
-#               monstre_attaque_equipe()
-
-# si_pseudo_valide(pseudo):
-#   si pseudo n'est pas un string vide:
-#       retourne Vrai
-#   sinon:
-#       affiche que l'utilisateur doit écrire un pseudo
-#       retourne Faux
+#       si_monstre_vivant(monstre):
+#           monstre_attaque_equipe()
