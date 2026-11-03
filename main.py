@@ -65,12 +65,16 @@
 #   boucle tant que si_equipe_vivante():
 #       afficher_info_tour(tours, score)
 #       monstre = créer_monstre()
-#       boucle tant que si_monstre_vivant(monstre):
-#           equipe_attaque_monstre()
+#       lancer_tour(equipe, monstre)
+#       si_equipe_vivante():
+#           score = recompenses_monstre(monstre)
+#   retourner score
+
+# lancer_tour(equipe, monstre):
+#   boucle tant que si_monstre_vivant(monstre) et si_equipe_vivante(equipe):
+#       equipe_attaque_monstre()
 #           si_monstre_vivant(monstre):
 #               monstre_attaque_equipe()
-#       score = recompenses_monstre(monstre)
-#   afficher_info_fin(tours, score)
 
 # si_pseudo_valide(pseudo):
 #   si pseudo n'est pas un string vide:
