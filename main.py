@@ -20,17 +20,16 @@
 #   retourne Faux
 
 # lancer_fonction(choix):
-#   si choix < 3:
+#   si choix inférieur à 3:
 #       score_list = recuperer_liste(Score)
-#       si choix == 1 -> charger_partie(score_list)
-#       si choix == 2 -> classement(score_list)
-#   sinon -> quitte la boucle
+#       si choix 1 -> charger_partie(score_list)
+#       si choix 2 -> classement(score_list)
 
 # recuperer_liste(collection)
-#   resultat = []
+#   crée une liste vide
 #   pour tout document dans la collection.find():
-#       ajouter le document à resultat
-#   retourne résultat
+#       ajouter le document à la liste
+#   retourner la liste
 
 # charger_partie(score_list):
 #   pseudo = demander_pseudo()
