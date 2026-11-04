@@ -1,4 +1,5 @@
 from db_init import *
+import random
 
 # main:
 # choix = choix_menu():
@@ -70,16 +71,16 @@ def get_list(collection):
 # charger_partie(score_list):
 #   pseudo = demander_pseudo()
 #   equipe = creer_equipe()
-#   monstres = recuperer_liste(Monstres)
-#   score = lancer_partie(equipe, monstres)
+#   enemies = recuperer_liste(Monstres)
+#   score = lancer_partie(equipe, enemies)
 #   ajouter_score(score, pseudo, score_list)
 #   afficher_ecran_fin(pseudo, score, equipe)
 
 def load_game(score_list):
     username = ask_username()
     team = create_team()
-    monsters = get_list(Monsters)
-    score = start_game(team, monsters)
+    enemies = get_list(Enemies)
+    score = start_game(team, enemies)
     save_score(score, username, score_list)
     show_end_screen(username, score, team)
 
@@ -145,19 +146,19 @@ def is_team_incomplete(team, max):
         return True
     return False
 
-# lancer_partie(equipe, monstres):
+# lancer_partie(equipe, enemies):
 #   score = 0
 #   boucle tant que si_equipe_vivante(equipe):
-#       lancer_vague(equipe, monstres, score)
+#       lancer_vague(equipe, enemies, score)
 #       si_equipe_vivante(equipe):
 #           score += 1
 #       afficher_info_vague(score)
 #   retourne score
 
-def start_game(team, monsters):
+def start_game(team, enemies):
     score = 0
     while is_team_alive(team):
-        start_wave(team, monsters, score)
+        start_wave(team, enemies, score)
         if is_team_alive(team):
             score += 1
         print_wave_info()
@@ -173,41 +174,49 @@ def is_team_alive(team):
         if is_alive(member):
             return True
 
-# lancer_vague(equipe, monstres, score):
-#   monstre = recuperer_monstre(monstres)
-#   lancer_combat(equipe, monstre)
+# lancer_vague(equipe, enemies, score):
+#   enemi = recuperer_enemi(enemies)
+#   lancer_combat(equipe, enemi)
 
-def start_wave(team, monsters, score):
-    monster = get_monster(monsters)
-    start_combat(team, monster)
+def start_wave(team, enemies, score):
+    enemy = get_enemy(enemies)
+    start_combat(team, enemy)
 
 # si_vivant(personnage):
 #   si hp de personnage > 0:
 #       retourner Vrai
 #   retourner Faux
 
-def is_alive(entity):
-    if sd
+def is_alive(entity : dict):
+    if entity[1] > 0:
+        return True
+    return False
 
 # afficher_info_vague(score):
 #   affiche f"Tour numéro : {score}"
 
-# récuperer_monstre(monstres):
-#   retourner un élement aléatoire dans la liste monstres
+def print_wave_info(score):
+    print(f"Tour numéro : {score}")
 
-# lancer_combat(equipe, monstre):
-#   boucle tant que si_vivant(monstre) et si_equipe_vivante(equipe):
-#       equipe_attaque_monstre(equipe, monstre)
-#       si_vivant(monstre):
-#           monstre_attaque_equipe(monstre, equipe)
+# recuperer_enemi(enemi):
+#   retourner un élement aléatoire dans la liste des enemies 
 
-# equipe_attaque_monstre(equipe, monstre):
+def get_enemy(enemies):
+    return random.choice(enemies)
+
+# lancer_combat(equipe, enemi):
+#   boucle tant que si_vivant(enemi) et si_equipe_vivante(equipe):
+#       equipe_attaque_monstre(equipe, enemi)
+#       si_vivant(enemi):
+#           monstre_attaque_equipe(enemi, equipe)
+
+# equipe_attaque_monstre(equipe, enemi):
 #   pour chaque personnage dans equipe:
-#       attaque(personnage, monstre)
+#       attaque(personnage, enemi)
 
-# monstre_attaque_equipe(monstre, equipe):
+# monstre_attaque_equipe(enemi, equipe):
 #   personnage = personnage_aléatoire(equipe)
-#   attaque(monstre, personnage)
+#   attaque(enemi, personnage)
 
 # personnage_aléatoire(equipe):
 #   equipe_vivante = récuperer_personnages_vivants(equipe, [])

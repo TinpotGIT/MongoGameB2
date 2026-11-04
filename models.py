@@ -1,5 +1,5 @@
 # Dictionnaire des personnages et leurs statistiques
-Personnages = [ 
+CharacterList = [ 
     {"Nom" : "Guerrier", "Vie" : 100, "Defense" : 10, "Attack" : 15 },
     {"Nom": "Mage", "Vie" : 80, "Defense": 5, "Attack" : 20 },
     {"Nom" : "Archer", "Vie" : 90, "Defense": 7, "Attack" : 18},
@@ -12,60 +12,15 @@ Personnages = [
     {"Nom" : "Chasseur", "Vie" : 100, "Defense": 11, "Attack" : 16}
 ]
 
-dictMonstres = { 
-    "Goblin": {
-        "Vie" : 50,
-        "Defense" : 5,
-        "Attack" : 10
-    },
-    "Orc": {
-        "Vie" : 120,
-        "Defense": 8,
-        "Attack" : 20
-    },
-    "Dragon": {
-        "Vie" : 300,
-        "Defense": 20,
-        "Attack" : 35
-    },
-    "Zombie": {
-        "Vie" : 70,
-        "Defense": 6,
-        "Attack" : 12
-    },
-    "Troll": {
-        "Vie" : 200,
-        "Defense": 15,
-        "Attack" : 25
-    },
-    "Spectre": {
-        "Vie" : 100,
-        "Defense": 10,
-        "Attack" : 18
-    },
-    "Golem": {
-        "Vie" : 250,
-        "Defense": 25,
-        "Attack" : 30 
-    },
-    "Vampire": {
-        "Vie" : 150,
-        "Defense": 12,
-        "Attack" : 22 
-    },
-    "Loup-Garou": {
-        "Vie" : 180,
-        "Defense": 18,
-        "Attack" : 28 
-    },
-    "Squelette": {
-        "Vie" : 90,
-        "Defense": 7,
-        "Attack" : 15 
-    },
-    "MUR": {
-        "Vie" : 400,
-        "Defense": 20,
-        "Attack" : 0
-    }
-}
+EnemyList = [
+    {"Nom" : "Goblin", "Vie" : 50, "Defense" : 5, "Attack" : 10},
+    {"Nom" : "Orc", "Vie" : 120, "Defense": 8, "Attack" : 20 },
+    {"Nom" : "Dragon", "Vie" : 300, "Defense": 20, "Attack" : 35 },
+    {"Nom" : "Zombie", "Vie" : 70, "Defense": 6, "Attack" : 12 },
+    {"Nom" : "Troll", "Vie" : 200, "Defense": 15, "Attack" : 25},
+    {"Nom" : "Spectre",  "Vie" : 100, "Defense": 10, "Attack" : 18},
+    {"Nom" : "Golem", "Vie" : 250, "Defense": 25, "Attack" : 30 },
+    {"Nom" : "Vampire", "Vie" : 150, "Defense": 12, "Attack" : 22 },
+    {"Nom" : "Loup-Garou", "Vie" : 180, "Defense": 18, "Attack" : 28 },
+    {"Nom" : "Squelette", "Vie" : 90, "Defense": 7, "Attack" : 15 }
+]
