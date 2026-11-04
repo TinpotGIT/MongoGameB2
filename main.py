@@ -1,12 +1,13 @@
 # main:
-# choix_menu():
+# choix = choix_menu():
+# lance_fonction(choix)
 
 # choix_menu():
 #   Boucle infini:
 #       afficher_menu()
 #       choix = demande un input pour le menu
 #       si_nombre_valide(choix, 1, 3):
-#           lance_fonction(choix)
+#           return choix
 
 # afficher_menu():
 #   affiche 1. Jouer
@@ -14,42 +15,40 @@
 #   affiche 3. Quitter
 
 # si_nombre_valide(choix, min, max):
-#   si choix n'est pas un nombre:
-#       retourne Faux
-#   si int(choix) se trouve entre min et max:
+#   si choix est un nombre et int(choix) se trouve entre min et max:
 #       retourne Vrai
 #   retourne Faux
 
 # lancer_fonction(choix):
-#   pour choix:
-#       si 1 -> charger_partie()
-#       si 2 -> classement()
-#       si 3 -> quitte la boucle
-
-# charger_partie():
-#   pseudo = demander_pseudo()
-#   equipe = creer_equipe()
-#   monstres = recuperer_liste(Monstres)
-#   score = lancer_partie(equipe, monstres)
-#   ajouter_score(score, pseudo)
-
-# creer_equipe():
-#   liste_personnages = recuperer_liste(Personnages)
-#   afficher_personnages(liste_personnages)
-#   equipe = ajouter_personnages(liste_personnages, [], 3)
-#   retourner equipe
-
-# ajouter_personnages(liste_personnages, equipe, max):
-#   Boucle tant que len(equipe) != max:
-#       choix = demande un input 
-#       si_nombre_valide(choix, 1, len(liste_personnages)):
-#           ajouter liste_personnages[choix] à equipe
+#   si choix < 3:
+#       score_list = recuperer_liste(Score)
+#       si choix == 1 -> charger_partie(score_list)
+#       si choix == 2 -> classement(score_list)
+#   sinon -> quitte la boucle
 
 # recuperer_liste(collection)
 #   resultat = []
 #   pour tout document dans la collection.find():
-#       ajouter le document à la liste
+#       ajouter le document à resultat
 #   retourne résultat
+
+# charger_partie(score_list):
+#   pseudo = demander_pseudo()
+#   equipe = creer_equipe()
+#   monstres = recuperer_liste(Monstres)
+#   score = lancer_partie(equipe, monstres)
+#   ajouter_score(score, pseudo, score_list)
+
+# demander_pseudo():
+#   afficher "Ecris ton pseudo : "
+#   pseudo = demander input
+#   retourner pseudo
+
+# creer_equipe():
+#   liste_personnages = recuperer_liste(Personnages)
+#   afficher_personnages(liste_personnages)
+#   equipe = ajouter_personnages(liste_personnages)
+#   retourner equipe
 
 # afficher_personnages(liste):
 #   pour tout personnage dans la liste:
@@ -61,16 +60,23 @@
 #   affiche la force du personnage
 #   affiche la defense du personnage
 
-# demander_pseudo():
-#   afficher "Ecris ton pseudo : "
-#   pseudo = demander input
-#   retourner pseudo
+# ajouter_personnages(liste_personnages):
+#   equipe = []
+#   Boucle tant que si_equipe_incomplete(equipe, 3):
+#       choix = demande un input 
+#       si_nombre_valide(choix, 1, len(liste_personnages)):
+#           ajouter liste_personnages[choix - 1] à equipe
+
+# si_equipe_incomplete(equipe, max):
+#   si len(equipe) != max:
+#       retourne Vrai
+#   retourne Faux
 
 # lancer_partie(equipe, monstres):
 #   score = 0
-#   boucle tant que si_equipe_vivante():
+#   boucle tant que si_equipe_vivante(equipe):
 #       lancer_vague(equipe, monstres, score)
-#       si_equipe_vivante:
+#       si_equipe_vivante(equipe):
 #           score += 1
 #       afficher_info_vague(score)
 
@@ -78,9 +84,10 @@
 #   monstre = recuperer_monstre(monstres)
 #   lancer_combat(equipe, monstre)
 
-# si_equipe_vivante():
-#   pour tout membre dans équipe:
-#       retourne si_vivant(member)
+# si_equipe_vivante(equipe):
+#   pour tout membre dans equipe:
+#       si_vivant(member):
+#           retourner Vrai
 
 # si_vivant(personnage):
 #   si hp de personnage > 0:
@@ -101,7 +108,7 @@
 
 # equipe_attaque_monstre(equipe, monstre):
 #   pour chaque personnage dans equipe:
-#       attaque(personnage, equipe)
+#       attaque(personnage, monstre)
 
 # monstre_attaque_equipe(monstre, equipe):
 #   personnage = personnage_aléatoire(equipe)
@@ -119,17 +126,19 @@
 # attaque(attaquant, cible):
 #   hp de la cible - (attaque de l'attaquant - defense de la cible)
 
-# classement():
-#   score_list = recuperer_liste(Score)
+# classement(score_list):
 #   pour i jusqu'à len(score_list):
 #       Afficher f"{placement} -> {nom} : {score} \n" de score_list[i]
 
-# ajouter_score(score, pseudo):
-#   score_list = recuperer_liste(Score)
-#   ajouter_place_correcte(score_list, score)
+# ajouter_score(score, pseudo, score_list):
+#   update_score_list(score_list, score)
+#   update_collection(Scores, score_list)
 
-# ajouter_place_correcte(score_list, score):
+# update_score_list(score_list, score):
 #   de i jusqu'à len(score_list):
 #       si le score au score_list[i] est < score:
 #           insère score à score_list[i]
 #           break
+
+# update_collection(collection, list):
+#   collection.update_many({}, list)
