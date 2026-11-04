@@ -15,9 +15,4 @@ Enemies.drop()
 
 Characters.insert_many(CharacterList)
 Enemies.insert_many(CharacterList)
-
-def get_list(collection):
-    list = []
-    for doc in collection.find():
-        list.append(doc)
-    return list
+Scores.insert_many(ScoreList)

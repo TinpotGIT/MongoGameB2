@@ -24,3 +24,5 @@ EnemyList = [
     {"Nom" : "Loup-Garou", "Vie" : 180, "Defense": 18, "Attack" : 28 },
     {"Nom" : "Squelette", "Vie" : 90, "Defense": 7, "Attack" : 15 }
 ]
+
+ScoreList = []

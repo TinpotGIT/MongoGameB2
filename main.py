@@ -50,10 +50,10 @@ def is_valid_number(number, min, max):
 
 def choose_option(choice):
     if choice < 3:
-        score_list = get_list(Score)
+        score_list = get_list(Scores)
         if choice == 1:
             load_game(score_list)
-        elif:
+        else:
             leaderboard(score_list)
 
 # recuperer_liste(collection)
@@ -210,41 +210,89 @@ def get_enemy(enemies):
 #       si_vivant(enemi):
 #           monstre_attaque_equipe(enemi, equipe)
 
+def start_combat(team, enemy):
+    while is_alive(enemy) and is_team_alive(team):
+        team_attack(team, enemy)
+        if is_alive(enemy):
+            monster_attack(enemy, team)
+
 # equipe_attaque_monstre(equipe, enemi):
 #   pour chaque personnage dans equipe:
 #       attaque(personnage, enemi)
+
+def team_attack(team, enemy):
+    for member in team:
+        attack(member, enemy)
 
 # monstre_attaque_equipe(enemi, equipe):
 #   personnage = personnage_aléatoire(equipe)
 #   attaque(enemi, personnage)
 
+def monster_attack(enemy, team):
+    member = random_member(team)
+    attack(enemy, member)
+
 # personnage_aléatoire(equipe):
 #   equipe_vivante = récuperer_personnages_vivants(equipe, [])
 #   retourner personnage aléatoire dans equipe_vivante
+
+def random_member(team):
+    alive_members = get_alive_members(team, [])
+    return random.choice(alive_members)
 
 # récuperer_personnages_vivants(equipe, equipe_vivante):
 #   pour chaque personnage dans equipe:
 #       si hp personnage > 0:
 #           ajouter personnage dans equipe_vivante
 
+def get_alive_members(team, alive_members):
+    for member in team:
+        if member[2] > 0:
+            alive_members.append(member)
+
 # attaque(attaquant, cible):
 #   hp de la cible - (attaque de l'attaquant - defense de la cible)
+
+def attack(attacker, target):
+    damage = (attacker[4] - target[3])
+    if damage <= 0:
+        damage = 0
+    target[2] -= damage
 
 # classement(score_list):
 #   pour i jusqu'à len(score_list):
 #       Afficher f"{placement} -> {nom} : {score} \n" de score_list[i]
 
+def leaderboard(score_list):
+    for i in range(len(score_list)):
+        print(f"{i} -> {score_list[i][1] : {score_list[i][2]}}")
+
 # ajouter_score(score, pseudo, score_list):
 #   update_score_list(score_list, score)
 #   update_collection(Scores, score_list)
+
+def save_score(score, username, score_list):
+    update_score_list(score_list, score)
+    update_collection(Scores, score_list)
 
 # update_score_list(score_list, score):
 #   de i jusqu'à len(score_list):
 #       si le score au score_list[i] est < score:
 #           insère score à score_list[i]
 
+def update_score_list(score_list, score):
+    for i in range(len(score_list)):
+        if score_list[i][2] < score:
+            score_list.insert(i, score)
+            
 # update_collection(collection, list):
 #   collection.update_many({}, list)
 
+def update_collection(collection, list):
+    collection.update_many({}, list)
+
 # afficher_ecran_fin(score, pseudo):
 #   affiche un message qui donne le pseudo du joueur, son equipe et le score final qu'elle a eu. 
+
+def show_end_screen(score, username):
+    print("The end, will be finished after.")
