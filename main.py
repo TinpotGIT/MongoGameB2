@@ -1,23 +1,45 @@
+from db_init import *
+
 # main:
 # choix = choix_menu():
 # lance_fonction(choix)
 
+def main():
+    choice = menu_choice()
+    choose_option(choice)
+
 # choix_menu():
 #   Boucle infini:
 #       afficher_menu()
-#       choix = demande un input pour le menu
-#       si_nombre_valide(choix, 1, 3):
+#       si_choix_valide(1, 3)
 #           return choix
+
+def menu_choice():
+    while True:
+        print_menu()
+        choice = input("Choose an option : ")
+        if is_valid_number(choice, 1, 3):
+            return choice
 
 # afficher_menu():
 #   affiche 1. Jouer
 #   affiche 2. Classement
 #   affiche 3. Quitter
 
-# si_nombre_valide(choix, min, max):
-#   si choix est un nombre et int(choix) se trouve entre min et max:
+def print_menu():
+    print("1. Jouer")
+    print("2. Classement")
+    print("3. Quitter")
+
+# si_nombre_valide(nombre, min, max):
+#   si nombre est un nombre et int(nombre) se trouve entre min et max:
 #       retourne Vrai
 #   retourne Faux
+
+def is_valid_number(number, min, max):
+    if number.isdigit() and (number > min and number < max):
+        return True
+    return False
 
 # lancer_fonction(choix):
 #   si choix inférieur à 3:
@@ -25,11 +47,25 @@
 #       si choix 1 -> charger_partie(score_list)
 #       si choix 2 -> classement(score_list)
 
+def choose_option(choice):
+    if choice < 3:
+        score_list = get_list(Score)
+        if choice == 1:
+            load_game(score_list)
+        elif:
+            leaderboard(score_list)
+
 # recuperer_liste(collection)
 #   crée une liste vide
 #   pour tout document dans la collection.find():
 #       ajouter le document à la liste
 #   retourner la liste
+
+def get_list(collection):
+    list = []
+    for doc in collection.find():
+        list.append(doc)
+    return list
 
 # charger_partie(score_list):
 #   pseudo = demander_pseudo()
@@ -37,11 +73,24 @@
 #   monstres = recuperer_liste(Monstres)
 #   score = lancer_partie(equipe, monstres)
 #   ajouter_score(score, pseudo, score_list)
+#   afficher_ecran_fin(pseudo, score, equipe)
+
+def load_game(score_list):
+    username = ask_username()
+    team = create_team()
+    monsters = get_list(Monsters)
+    score = start_game(team, monsters)
+    save_score(score, username, score_list)
+    show_end_screen(username, score, team)
 
 # demander_pseudo():
 #   afficher "Ecris ton pseudo : "
 #   pseudo = demander input
 #   retourner pseudo
+
+def ask_username():
+    username = input("What is your username? : ")
+    return username
 
 # creer_equipe():
 #   liste_personnages = recuperer_liste(Personnages)
@@ -49,9 +98,19 @@
 #   equipe = ajouter_personnages(liste_personnages)
 #   retourner equipe
 
+def create_team():
+    character_list = get_list(Characters)
+    print_characters(character_list)
+    team = add_characters(character_list)
+    return team
+
 # afficher_personnages(liste):
 #   pour tout personnage dans la liste:
 #       afficher_personnage(personnage)
+
+def print_characters(list):
+    for character in list:
+        print_character(character)
 
 # afficher_personnage(personnage):
 #   affiche le nom du personnage
@@ -59,17 +118,32 @@
 #   affiche la force du personnage
 #   affiche la defense du personnage
 
+def print_character(character):
+    print(character)
+
 # ajouter_personnages(liste_personnages):
 #   equipe = []
 #   Boucle tant que si_equipe_incomplete(equipe, 3):
-#       choix = demande un input 
+#       choix = demande un input pour le menu
 #       si_nombre_valide(choix, 1, len(liste_personnages)):
 #           ajouter liste_personnages[choix - 1] à equipe
+
+def add_characters(character_list):
+    team = []
+    while is_team_incomplete(team, 3):
+        choice = input("Enter the character ID of the one you want : ")
+        if is_valid_number(choice, 1, len(character_list)):
+            team.append(character_list[choice - 1])
 
 # si_equipe_incomplete(equipe, max):
 #   si len(equipe) != max:
 #       retourne Vrai
 #   retourne Faux
+
+def is_team_incomplete(team, max):
+    if len(team) != max:
+        return True
+    return False
 
 # lancer_partie(equipe, monstres):
 #   score = 0
@@ -78,20 +152,42 @@
 #       si_equipe_vivante(equipe):
 #           score += 1
 #       afficher_info_vague(score)
+#   retourne score
 
-# lancer_vague(equipe, monstres, score):
-#   monstre = recuperer_monstre(monstres)
-#   lancer_combat(equipe, monstre)
+def start_game(team, monsters):
+    score = 0
+    while is_team_alive(team):
+        start_wave(team, monsters, score)
+        if is_team_alive(team):
+            score += 1
+        print_wave_info()
+    return score
 
 # si_equipe_vivante(equipe):
 #   pour tout membre dans equipe:
 #       si_vivant(member):
 #           retourner Vrai
 
+def is_team_alive(team):
+    for member in team:
+        if is_alive(member):
+            return True
+
+# lancer_vague(equipe, monstres, score):
+#   monstre = recuperer_monstre(monstres)
+#   lancer_combat(equipe, monstre)
+
+def start_wave(team, monsters, score):
+    monster = get_monster(monsters)
+    start_combat(team, monster)
+
 # si_vivant(personnage):
 #   si hp de personnage > 0:
 #       retourner Vrai
 #   retourner Faux
+
+def is_alive(entity):
+    if sd
 
 # afficher_info_vague(score):
 #   affiche f"Tour numéro : {score}"
@@ -137,7 +233,9 @@
 #   de i jusqu'à len(score_list):
 #       si le score au score_list[i] est < score:
 #           insère score à score_list[i]
-#           break
 
 # update_collection(collection, list):
 #   collection.update_many({}, list)
+
+# afficher_ecran_fin(score, pseudo):
+#   affiche un message qui donne le pseudo du joueur, son equipe et le score final qu'elle a eu. 
