@@ -67,7 +67,7 @@
 #   retourner pseudo
 
 # lancer_partie(equipe, monstres):
-#   créer variable score = 0
+#   score = 0
 #   boucle tant que si_equipe_vivante():
 #       lancer_vague(equipe, monstres, score)
 #       si_equipe_vivante:
@@ -80,9 +80,12 @@
 
 # si_equipe_vivante():
 #   pour tout membre dans équipe:
-#       si hp de member > 0:
-#           retourne Vrai
-#   retourne Faux
+#       retourne si_vivant(member)
+
+# si_vivant(personnage):
+#   si hp de personnage > 0:
+#       retourner Vrai
+#   retourner Faux
 
 # afficher_info_vague(score):
 #   affiche f"Tour numéro : {score}"
@@ -91,30 +94,42 @@
 #   retourner un élement aléatoire dans la liste monstres
 
 # lancer_combat(equipe, monstre):
-#   boucle tant que si_monstre_vivant(monstre) et si_equipe_vivante(equipe):
+#   boucle tant que si_vivant(monstre) et si_equipe_vivante(equipe):
 #       equipe_attaque_monstre(equipe, monstre)
-#       si_monstre_vivant(monstre):
+#       si_vivant(monstre):
 #           monstre_attaque_equipe(monstre, equipe)
 
 # equipe_attaque_monstre(equipe, monstre):
 #   pour chaque personnage dans equipe:
-#       pv du monstre - (attaque du personnage - defense du monstre)
+#       attaque(personnage, equipe)
 
 # monstre_attaque_equipe(monstre, equipe):
-#   personnage_choisi = personnage au hasard dans la liste de l'equipe
-#   pv du personnage_choisi - (attaque du monstre - defense du personnage_choisi)
-#   si pv du personnage choisi <= 0:
-#       retirer personnage choisi de la liste equipe
+#   personnage = personnage_aléatoire(equipe)
+#   attaque(monstre, personnage)
+
+# personnage_aléatoire(equipe):
+#   equipe_vivante = récuperer_personnages_vivants(equipe, [])
+#   retourner personnage aléatoire dans equipe_vivante
+
+# récuperer_personnages_vivants(equipe, equipe_vivante):
+#   pour chaque personnage dans equipe:
+#       si hp personnage > 0:
+#           ajouter personnage dans equipe_vivante
+
+# attaque(attaquant, cible):
+#   hp de la cible - (attaque de l'attaquant - defense de la cible)
 
 # classement():
-#   pour chaque user dans Scores:
-#       Afficher "placement -> nom : score \n"
+#   score_list = recuperer_liste(Score)
+#   pour i jusqu'à len(score_list):
+#       Afficher f"{placement} -> {nom} : {score} \n" de score_list[i]
 
 # ajouter_score(score, pseudo):
-#   emplacement = trouver_emplacement_score(score)
-#   inserer_nouveau_score(score, pseudo, emplacement)
+#   score_list = recuperer_liste(Score)
+#   ajouter_place_correcte(score_list, score)
 
-# trouver_emplacement_score(score):
-#   de i jusqu'à len(Scores)
-#       si le score du user au i < score:
-#           retourne emplacement
+# ajouter_place_correcte(score_list, score):
+#   de i jusqu'à len(score_list):
+#       si le score au score_list[i] est < score:
+#           insère score à score_list[i]
+#           break
