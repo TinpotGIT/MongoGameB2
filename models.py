@@ -1,28 +1,27 @@
 # Dictionnaire des personnages et leurs statistiques
 CharacterList = [ 
-    {"Nom" : "Guerrier", "Vie" : 100, "Defense" : 10, "Attack" : 15 },
-    {"Nom": "Mage", "Vie" : 80, "Defense": 5, "Attack" : 20 },
-    {"Nom" : "Archer", "Vie" : 90, "Defense": 7, "Attack" : 18},
-    {"Nom" : "Voleur", "Vie" : 85, "Defense": 8, "Attack" : 22},
-    {"Nom" : "Paladin", "Vie" : 110, "Defense": 12, "Attack" : 14},
-    {"Nom" : "Sorcier", "Vie" : 70, "Defense": 3, "Attack" : 25},
-    {"Nom" : "Chevalier", "Vie" : 120,"Defense": 15, "Attack" : 17},
-    {"Nom" : "Moine", "Vie" : 95, "Defense": 9, "Attack" : 19 },
-    {"Nom" : "Berserker", "Vie" : 105, "Defense": 6, "Attack" : 23},
-    {"Nom" : "Chasseur", "Vie" : 100, "Defense": 11, "Attack" : 16}
+    {"name" : "Guerrier", "hp" : 100, "defense" : 10, "attack" : 15 },
+    {"name": "Mage", "hp" : 80, "defense": 5, "attack" : 20 },
+    {"name" : "Archer", "hp" : 90, "defense": 7, "attack" : 18},
+    {"name" : "Voleur", "hp" : 85, "defense": 8, "attack" : 22},
+    {"name" : "Paladin", "hp" : 110, "defense": 12, "attack" : 14},
+    {"name" : "Sorcier", "hp" : 70, "defense": 3, "attack" : 25},
+    {"name" : "Chevalier", "hp" : 120,"defense": 15, "attack" : 17},
+    {"name" : "Moine", "hp" : 95, "defense": 9, "attack" : 19 },
+    {"name" : "Berserker", "hp" : 105, "defense": 6, "attack" : 23},
+    {"name" : "Chasseur", "hp" : 100, "defense": 11, "attack" : 16}
 ]
 
 EnemyList = [
-    {"Nom" : "Goblin", "Vie" : 50, "Defense" : 5, "Attack" : 10},
-    {"Nom" : "Orc", "Vie" : 120, "Defense": 8, "Attack" : 20 },
-    {"Nom" : "Dragon", "Vie" : 300, "Defense": 20, "Attack" : 35 },
-    {"Nom" : "Zombie", "Vie" : 70, "Defense": 6, "Attack" : 12 },
-    {"Nom" : "Troll", "Vie" : 200, "Defense": 15, "Attack" : 25},
-    {"Nom" : "Spectre",  "Vie" : 100, "Defense": 10, "Attack" : 18},
-    {"Nom" : "Golem", "Vie" : 250, "Defense": 25, "Attack" : 30 },
-    {"Nom" : "Vampire", "Vie" : 150, "Defense": 12, "Attack" : 22 },
-    {"Nom" : "Loup-Garou", "Vie" : 180, "Defense": 18, "Attack" : 28 },
-    {"Nom" : "Squelette", "Vie" : 90, "Defense": 7, "Attack" : 15 }
+    {"name" : "Goblin", "hp" : 50, "defense" : 5, "attack" : 10},
+    {"name" : "Orc", "hp" : 120, "defense": 8, "attack" : 20 },
+    {"name" : "Dragon", "hp" : 300, "defense": 20, "attack" : 35 },
+    {"name" : "Zombie", "hp" : 70, "defense": 6, "attack" : 12 },
+    {"name" : "Troll", "hp" : 200, "defense": 15, "attack" : 25},
+    {"name" : "Spectre",  "hp" : 100, "defense": 10, "attack" : 18},
+    {"name" : "Golem", "hp" : 250, "defense": 25, "attack" : 30 },
+    {"name" : "Vampire", "hp" : 150, "defense": 12, "attack" : 22 },
+    {"name" : "Loup-Garou", "hp" : 180, "defense": 18, "attack" : 28 },
+    {"name" : "Squelette", "hp" : 90, "defense": 7, "attack" : 15 }
 ]
 
-ScoreList = []
