@@ -65,4 +65,5 @@ class Character(Entity):
         return 0
 
     def play_turn(self, enemy):
-        self.attack_entity(enemy)
+        if self.is_alive():
+            self.attack_entity(enemy)

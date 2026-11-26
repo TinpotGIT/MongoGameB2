@@ -1,6 +1,7 @@
 from item import Item
 from entity import Entity
-from rarity import Rarity
+
+from random import random
 
 class Enemy(Entity):
 
@@ -23,16 +24,6 @@ class Enemy(Entity):
     def drop_loot(self):
         loot_list: list[Item] = []
         for drop in self.dropables:
-            if roll_chance(drop.drop_rate):
+            if random <= drop.drop_rate:
                 loot_list.append(drop)
         return loot_list
-    
-    #roll_chance(rarity):
-    #   chance = random.random
-    #   on récupère le pourcentage de chance de la rareté
-    #   si chance est comprise entre 0 et le pourcentage:
-    #       retourne vrai
-    #   retourne faux
-
-def roll_chance(rarity):
-    pass
