@@ -80,11 +80,12 @@ class Character(Entity):
             return (self.attack - target.defense)
         return 0
 
-    def play_turn(self, enemy: Entity, affichage: Affichage, player: Player):
-        index = affichage.display_vue(vue_tour_joueur(player.team, self, [enemy]))
+    def play_turn(self, monsters: list[Entity], affichage: Affichage, player: Player):
+        index = affichage.display_vue(vue_tour_joueur(player.team, self, monsters))
         match index:
             case 0:
-                pass
+                monster = affichage.display_vue(VueChoixCible(player.team, self, monsters))
+                self.attack_entity(monster)
             case 1:
                 player.check_inventory(affichage)
             case 2:

@@ -13,13 +13,21 @@ class Vague():
         self.vague_actuel = _vague
         self.monsters = _monsters
 
-    #def pick_enemies(vague):
-    #   prends un ennemi au hasard dans 
-    #   la liste monsters de vague
+    #def pick_enemies(vague, vague_list, enemy_list):
+    #   parcourir les dict de vague_list:
+    #       si la vague_actuel est entre le start_number et end_number de la dict:
+    #           recuperer tout les monstres entre l'index de début et de fin des monstres de la vague
 
-    def pick_enemies(self):
-        return choice(self.monsters)
+    def pick_enemies(self, vague_list, enemy_list):
+        self.monsters = []
+        vague = self.get_vague(self, vague_list)
 
+    def get_vague(self, vague_list):
+        for vague in vague_list:
+            vague = dict(vague)
+            if vague["start_number"] <= self.vague_actuel <= vague["end_number"]:
+                return vague
+    
     #def get_difficulty():
     #   renvoie le lap, donc 1 + le modulo de vague_actuel sur 30
 
@@ -38,12 +46,18 @@ class Vague():
     #       si index == 2:
     #           passer le tour
 
-    def play_vague(self, player: Player, affichage: Affichage):
-        monster : Enemy = self.pick_enemies(self)
-        while monster.is_alive() and player.is_team_alive:
+    def play_vague(self, player: Player, affichage: Affichage, vague_list, enemy_list):
+        monsters : Enemy = self.pick_enemies(self, vague_list, enemy_list)
+        while are_monsters_alive(monsters) and player.is_team_alive:
             for char in player.team:
                 if char.is_alive():
-                    char.play_turn(monster, affichage, player)
+                    char.play_turn(monsters, affichage, player)
 
 def apply_difficulty(difficulty_list: list):
     pass
+
+def are_monsters_alive(monsters: list[Enemy]):
+    for monster in monsters:
+        if monster.is_alive():
+            return True
+    return False
