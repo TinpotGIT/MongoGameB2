@@ -6,13 +6,21 @@ class Character(Entity):
 
     equipment: list[Item]
 
-    @attack.setter
-    def attack(self, value):
-        self.attack = value   
+    def set_attack(self, value):
+        self.attack = value
 
-    @defense.setter
-    def defense(self, value):
+    def get_attack(self):
+        return self.attack
+
+    attack = property(get_attack, set_attack)
+
+    def set_defense(self, value):
         self.defense = value
+
+    def get_defense(self):
+        return self.defense
+
+    defense = property(get_defense, set_defense)
 
     def __init__(self, _name, _hp, _max_hp, _attack, _defense, _equipment):
         self.name = _name
@@ -25,7 +33,8 @@ class Character(Entity):
     #equip_item(Item)
     #ajouter l'objet Item dans la liste d'equipement
     def equip_item(self, equipable: Equipable):
-        self.equipment.append(equipable)
+        if self.is_slot_available(self, equipable.item_type):
+            self.equipment.append(equipable)
 
     #unequip_item(Item)
     #enlève l'objet Item dans la liste d'equipement
@@ -64,6 +73,6 @@ class Character(Entity):
             return (self.attack - target.defense)
         return 0
 
-    def play_turn(self, enemy):
+    def play_turn(self, enemy: Entity):
         if self.is_alive():
             self.attack_entity(enemy)

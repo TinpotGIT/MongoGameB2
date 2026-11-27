@@ -27,3 +27,10 @@ class Enemy(Entity):
             if random <= drop.drop_rate:
                 loot_list.append(drop)
         return loot_list
+
+    #play_turn(player: Entity):
+    #   si l'enemy est en vie:
+    #       attack le personnage  
+    def play_turn(self, character: Entity):
+        if self.is_alive:
+            self.attack_entity(character)

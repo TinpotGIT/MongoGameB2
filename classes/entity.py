@@ -12,6 +12,12 @@ class Entity:
         self.attack = _attack
         self.defense = _defense
 
+    def __str__(self):
+        print(f"------------- {self.name} -------------")
+        print(f"Hp : {self.hp}/{self.max_hp}")
+        print(f"Attack : {self.attack}")
+        print(f"Defense : {self.defense}")
+    
     #is alive(self):
     #   si self.pv <= 0:
     #       retourne faux
