@@ -66,3 +66,5 @@ class Player():
         character : Character = affichage.display_vue(vue.vue_choix_cible_equipe(self.inventory, self.team))
         if item is Consumable:
             item.use(Character)
+        elif item is Equipable:
+            character.equip_item(item)

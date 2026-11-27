@@ -1,10 +1,14 @@
 from entity import Entity
 from item import Item
 from equipable_item import Equipable
+from player import Player
+
+from affichage import Affichage
+from vue import *
 
 class Character(Entity):
 
-    equipment: list[Item]
+    equipment: list[Equipable] = []
 
     def set_attack(self, value):
         self.attack = value
@@ -32,14 +36,17 @@ class Character(Entity):
 
     #equip_item(Item)
     #ajouter l'objet Item dans la liste d'equipement
-    def equip_item(self, equipable: Equipable):
-        if self.is_slot_available(self, equipable.item_type):
-            self.equipment.append(equipable)
+    def equip_item(self, item: Equipable, player: Player):
+        if not self.is_slot_available(self, item.item_type):
+            removed_item = self.get_equipment(self, item.item_type)
+            self.unequip_item(self, item, player)
+        self.equipment.append(item)
 
     #unequip_item(Item)
     #enlève l'objet Item dans la liste d'equipement
-    def unequip_item(self, item: Item):
+    def unequip_item(self, item: Equipable, player: Player):
         self.equipment.remove(item)
+        player.inventory.append(item)
 
     #is_slot_available(slot_name):
     # cherche dans tous les equipable de la liste d'equipement:
@@ -73,6 +80,12 @@ class Character(Entity):
             return (self.attack - target.defense)
         return 0
 
-    def play_turn(self, enemy: Entity):
-        if self.is_alive():
-            self.attack_entity(enemy)
+    def play_turn(self, enemy: Entity, affichage: Affichage, player: Player):
+        index = affichage.display_vue(vue_tour_joueur(player.team, self, [enemy]))
+        match index:
+            case 0:
+                pass
+            case 1:
+                player.check_inventory(affichage)
+            case 2:
+                pass
